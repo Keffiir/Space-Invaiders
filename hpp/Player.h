@@ -23,6 +23,7 @@ public:
     void Fire();
     void Update();
     Vector2 GetCurrentPosition();
+    Rectangle GetRect();
 };
 
 #endif //PLAYER_H

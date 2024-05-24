@@ -18,6 +18,7 @@ private:
     std::vector<Enemy> CreateEnemies();
     void MoveEnemies();
     int EnemiesDirection();
+    void CheckForCollisions();
 public:
     Game();
     ~Game();

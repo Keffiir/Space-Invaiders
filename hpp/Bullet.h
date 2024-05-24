@@ -9,10 +9,11 @@ public:
     void Update();
     void Draw();
     bool IsActive();
+    Rectangle GetRect();
+    bool active;
+    int speed;
 private:
     Vector2 pos;
-    int speed;
-    bool active;
 };
 
 

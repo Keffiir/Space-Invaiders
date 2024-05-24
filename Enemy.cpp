@@ -44,10 +44,10 @@ void Enemy::UnloadImages() {
     }
 }
 
-Rectangle Enemy::getRect() {
+Rectangle Enemy::GetRect() {
     return {position.x, position.y,
-    float(enemyTypesImg[type - 1].width),
-    float(enemyTypesImg[type - 1].height)
+    float(enemyTypesImg[type].width),
+    float(enemyTypesImg[type].height)
     };
 }
 

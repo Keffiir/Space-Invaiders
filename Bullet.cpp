@@ -12,7 +12,7 @@ Bullet::Bullet(Vector2 pos, int speed) {
 }
 
 void Bullet::Draw() {
-    DrawRectangle(pos.x, pos.y, 4, 15, RED);
+    DrawRectangle(pos.x, pos.y, 3, 12, RED);
 }
 
 void Bullet::Update() {
@@ -27,3 +27,14 @@ void Bullet::Update() {
 bool Bullet::IsActive() {
     return active;
 }
+
+Rectangle Bullet::GetRect() {
+    Rectangle rect;
+    rect.x = pos.x;
+    rect.y = pos.y;
+    rect.width = 3;
+    rect.height = 12;
+
+    return rect;
+}
+

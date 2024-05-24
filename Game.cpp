@@ -35,6 +35,7 @@ void Game::Event() {
 
 void Game::Update() {
     player.Update();
+    CheckForCollisions();
     for(int i = 0; i < bullets.size(); i++) {
         bullets[i].Update();
         if(!bullets[i].IsActive()) {
@@ -69,6 +70,23 @@ std::vector<Enemy> Game::CreateEnemies() {
     }
     return enemies;
 }
+
+void Game::CheckForCollisions() {
+    for(auto& bullet: bullets) {
+        if(bullet.speed < 0) {
+            auto it = enemies.begin();
+            while(it != enemies.end()){
+                if(CheckCollisionRecs(it -> GetRect(), bullet.GetRect())) {
+                    it = enemies.erase(it);
+                    bullet.active = false;
+                } else {
+                    ++it;
+                }
+            }
+        }
+    }
+}
+
 
 
 void Game::MoveEnemies() {

@@ -42,5 +42,9 @@ Vector2 Player::GetCurrentPosition() {
     return position;
 }
 
+Rectangle Player::GetRect() {
+    return {position.x, position.y, float(image.width), float(image.height)};
+}
+
 
 

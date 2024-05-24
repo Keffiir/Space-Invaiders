@@ -14,7 +14,7 @@ public:
     void Draw();
     int GetType();
     static void UnloadImages();
-    Rectangle getRect();
+    Rectangle GetRect();
     static Texture2D enemyTypesImg[3];
     int type;
     Vector2 position;
