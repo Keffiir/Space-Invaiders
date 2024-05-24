@@ -5,7 +5,7 @@
 #include "hpp/Game.h"
 
 Game::Game() {
-
+    enemies = CreateEnemies();
 }
 
 Game::~Game() {
@@ -16,6 +16,10 @@ void Game::Draw() {
     player.Draw();
     for(Bullet bullet : bullets) {
         bullet.Draw();
+    }
+
+    for(Enemy enemy: enemies) {
+        enemy.Draw();
     }
 }
 
@@ -38,6 +42,39 @@ void Game::Update() {
         }
     }
 }
+
+std::vector<Enemy> Game::CreateEnemies() {
+    std::vector<Enemy> enemies;
+    for(int row = 0; row < 6; row++) {
+        for(int column = 0; column < 11; column++) {
+            int enemyType;
+            switch (row) {
+                case 0:
+                case 1:
+                    enemyType = 1;
+                break;
+                case 2:
+                case 3:
+                    enemyType = 2;
+                break;
+                case 4:
+                case 5:
+                    enemyType = 3;
+                break;
+            }
+            float x = 50 + column * 64;
+            float y = row * 64;
+            enemies.push_back(Enemy(enemyType, {x, y}));
+        }
+    }
+    return enemies;
+}
+
+
+void Game::MoveEnemies() {
+
+}
+
 
 
 

@@ -32,7 +32,6 @@ add_executable(${PROJECT_NAME}
         Player.cpp
         hpp/Player.h
         images/ship.png
-        images/ship1.png
         Game.cpp
         hpp/Game.h
         hpp/Bullet.h
@@ -42,7 +41,7 @@ add_executable(${PROJECT_NAME}
         Block.cpp
         hpp/Block.h
         Enemy.cpp
-        Enemy.h
+        hpp/Enemy.h
 )
 #set(raylib_VERBOSE 1)
 target_link_libraries(${PROJECT_NAME} raylib)

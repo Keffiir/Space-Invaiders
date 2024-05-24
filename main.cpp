@@ -11,7 +11,7 @@
 int main() {
     Color grey = {29, 29, 27, 255};
     int screenWidth = 800;
-    int screenHeight = 600;
+    int screenHeight = 800;
 
 
     InitWindow(screenWidth, screenHeight, "C++ Space Invaiders");

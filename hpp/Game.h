@@ -6,14 +6,18 @@
 #define GAME_H
 #include "Player.h"
 #include "Bullet.h"
-#include "Obstacle.h"
 #include <vector>
+#include "Enemy.h"
 
 
 class Game {
 private:
     Player player;
     std::vector<Bullet> bullets;
+    std::vector<Enemy> enemies;
+    std::vector<Enemy> CreateEnemies();
+    void MoveEnemies();
+    int EnemiesDirection();
 public:
     Game();
     ~Game();

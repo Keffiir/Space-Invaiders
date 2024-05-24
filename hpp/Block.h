@@ -12,7 +12,6 @@ public:
     void Draw();
 private:
     Vector2 position;
-
 };
 
 #endif //BLOCK_H

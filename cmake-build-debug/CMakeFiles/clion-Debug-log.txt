@@ -1,6 +1,6 @@
 /Applications/CLion.app/Contents/bin/cmake/mac/aarch64/bin/cmake -DCMAKE_BUILD_TYPE=Debug -DCMAKE_MAKE_PROGRAM=/Applications/CLion.app/Contents/bin/ninja/mac/aarch64/ninja -G Ninja -S /Users/nikiforovivan/CLionProjects/space-invaiders -B /Users/nikiforovivan/CLionProjects/space-invaiders/cmake-build-debug
 -- Populating raylib
--- Configuring done (0.1s)
+-- Configuring done (0.0s)
 -- Generating done (0.0s)
 -- Build files have been written to: /Users/nikiforovivan/CLionProjects/space-invaiders/cmake-build-debug/_deps/raylib-subbuild
 ninja: no work to do.
@@ -29,6 +29,6 @@ This warning is for project developers.  Use -Wno-dev to suppress it.
 -- Compiling with the flags:
 --   PLATFORM=PLATFORM_DESKTOP
 --   GRAPHICS=GRAPHICS_API_OPENGL_33
--- Configuring done (0.3s)
+-- Configuring done (0.2s)
 -- Generating done (0.0s)
 -- Build files have been written to: /Users/nikiforovivan/CLionProjects/space-invaiders/cmake-build-debug
