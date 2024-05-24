@@ -1,0 +1,23 @@
+# ninja log v5
+3168	3184	1716105680166728460	/Users/nikiforovivan/CLionProjects/space-invaiders/cmake-build-debug/_deps/raylib-subbuild/raylib-populate-prefix/src/raylib-populate-stamp/raylib-populate-build	4ef715652f1ecaf1
+12	3130	1716105680111808699	/Users/nikiforovivan/CLionProjects/space-invaiders/cmake-build-debug/_deps/raylib-subbuild/raylib-populate-prefix/src/5.0.tar.gz	63e79d94ff3fe80b
+3130	3145	1716105680127797972	/Users/nikiforovivan/CLionProjects/space-invaiders/cmake-build-debug/_deps/raylib-subbuild/raylib-populate-prefix/src/raylib-populate-stamp/raylib-populate-update	2e8594ee560ca5e9
+3207	3223	1716105680206090984	/Users/nikiforovivan/CLionProjects/space-invaiders/cmake-build-debug/_deps/raylib-subbuild/raylib-populate-prefix/src/raylib-populate-stamp/raylib-populate-done	681343a3b034fd99
+0	12	1716105676995206116	/Users/nikiforovivan/CLionProjects/space-invaiders/cmake-build-debug/_deps/raylib-subbuild/raylib-populate-prefix/src/raylib-populate-stamp/raylib-populate-mkdir	c52e8ba71c7778e8
+12	3130	1716105680111808699	raylib-populate-prefix/src/raylib-populate-stamp/raylib-populate-download	63e79d94ff3fe80b
+12	3130	1716105680111808699	raylib-populate-prefix/src/5.0.tar.gz	63e79d94ff3fe80b
+3184	3196	1716105680179301532	/Users/nikiforovivan/CLionProjects/space-invaiders/cmake-build-debug/_deps/raylib-subbuild/raylib-populate-prefix/src/raylib-populate-stamp/raylib-populate-install	e69ffe32e32daa81
+12	3130	1716105680111808699	/Users/nikiforovivan/CLionProjects/space-invaiders/cmake-build-debug/_deps/raylib-subbuild/raylib-populate-prefix/src/raylib-populate-stamp/raylib-populate-download	63e79d94ff3fe80b
+3130	3145	1716105680127797972	raylib-populate-prefix/src/raylib-populate-stamp/raylib-populate-update	2e8594ee560ca5e9
+3145	3156	1716105680139129728	raylib-populate-prefix/src/raylib-populate-stamp/raylib-populate-patch	6bfecf0a793419c4
+3156	3168	1716105680151048725	raylib-populate-prefix/src/raylib-populate-stamp/raylib-populate-configure	f42a1b923ddab401
+3168	3184	1716105680166728460	raylib-populate-prefix/src/raylib-populate-stamp/raylib-populate-build	4ef715652f1ecaf1
+3145	3156	1716105680139129728	/Users/nikiforovivan/CLionProjects/space-invaiders/cmake-build-debug/_deps/raylib-subbuild/raylib-populate-prefix/src/raylib-populate-stamp/raylib-populate-patch	6bfecf0a793419c4
+3156	3168	1716105680151048725	/Users/nikiforovivan/CLionProjects/space-invaiders/cmake-build-debug/_deps/raylib-subbuild/raylib-populate-prefix/src/raylib-populate-stamp/raylib-populate-configure	f42a1b923ddab401
+0	12	1716105676995206116	raylib-populate-prefix/src/raylib-populate-stamp/raylib-populate-mkdir	c52e8ba71c7778e8
+3184	3196	1716105680179301532	raylib-populate-prefix/src/raylib-populate-stamp/raylib-populate-install	e69ffe32e32daa81
+3207	3223	1716105680206090984	raylib-populate-prefix/src/raylib-populate-stamp/raylib-populate-done	681343a3b034fd99
+3196	3207	1716105680189895548	/Users/nikiforovivan/CLionProjects/space-invaiders/cmake-build-debug/_deps/raylib-subbuild/raylib-populate-prefix/src/raylib-populate-stamp/raylib-populate-test	6bf299d78a940673
+3196	3207	1716105680189895548	raylib-populate-prefix/src/raylib-populate-stamp/raylib-populate-test	6bf299d78a940673
+3207	3223	1716105680206090984	CMakeFiles/raylib-populate-complete	681343a3b034fd99
+3207	3223	1716105680206090984	/Users/nikiforovivan/CLionProjects/space-invaiders/cmake-build-debug/_deps/raylib-subbuild/CMakeFiles/raylib-populate-complete	681343a3b034fd99
