@@ -11,16 +11,16 @@ Enemy::Enemy(int type, Vector2 position) {
     this->type = type;
     this->position = position;
 
-    if(enemyTypesImg[type -1].id == 0) {
+    if(enemyTypesImg[type].id == 0) {
 
         switch (type) {
-            case 1:
+            case 0:
                 enemyTypesImg[0] = LoadTexture("/Users/nikiforovivan/CLionProjects/space-invaiders/images/alien-1.png");
             break;
-            case 2:
+            case 1:
                 enemyTypesImg[1] = LoadTexture("/Users/nikiforovivan/CLionProjects/space-invaiders/images/alien-2.png");
             break;
-            case 3:
+            case 2:
                 enemyTypesImg[2] = LoadTexture("/Users/nikiforovivan/CLionProjects/space-invaiders/images/alien-3.png");
             break;
             default:
@@ -31,7 +31,7 @@ Enemy::Enemy(int type, Vector2 position) {
 }
 
 void Enemy::Draw() {
-    DrawTextureV(enemyTypesImg[type - 1], position, WHITE);
+    DrawTextureV(enemyTypesImg[type], position, WHITE);
 }
 
 int Enemy::GetType() {
@@ -39,7 +39,7 @@ int Enemy::GetType() {
 }
 
 void Enemy::UnloadImages() {
-    for(int i = 0; i < 4; i++) {
+    for(int i = 0; i < 3; i++) {
         UnloadTexture(enemyTypesImg[i]);
     }
 }

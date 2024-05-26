@@ -4,6 +4,7 @@
 
 #include "raylib.h"
 #include "hpp/Bullet.h"
+#include "iostream"
 
 Bullet::Bullet(Vector2 pos, int speed) {
     this->pos = pos;
@@ -32,7 +33,7 @@ Rectangle Bullet::GetRect() {
     Rectangle rect;
     rect.x = pos.x;
     rect.y = pos.y;
-    rect.width = 3;
+    rect.width = 4;
     rect.height = 12;
 
     return rect;

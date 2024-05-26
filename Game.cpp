@@ -3,6 +3,7 @@
 //
 
 #include "hpp/Game.h"
+#include "iostream"
 
 Game::Game() {
     enemies = CreateEnemies();
@@ -46,24 +47,15 @@ void Game::Update() {
 
 std::vector<Enemy> Game::CreateEnemies() {
     std::vector<Enemy> enemies;
+    int enemyType = 0;
     for(int row = 0; row < 6; row++) {
         for(int column = 0; column < 11; column++) {
-            int enemyType;
-            switch (row) {
-                case 0:
-                case 1:
-                    enemyType = 1;
-                break;
-                case 2:
-                case 3:
-                    enemyType = 2;
-                break;
-                case 4:
-                case 5:
-                    enemyType = 3;
-                break;
+            if(row == 2 || row == 3) {
+                enemyType = 1;
+            } else if(row == 4 || row == 5) {
+                enemyType = 2;
             }
-            float x = 50 + column * 64;
+            float x = column * 64;
             float y = row * 64;
             enemies.push_back(Enemy(enemyType, {x, y}));
         }
@@ -76,9 +68,11 @@ void Game::CheckForCollisions() {
         if(bullet.speed < 0) {
             auto it = enemies.begin();
             while(it != enemies.end()){
-                if(CheckCollisionRecs(it -> GetRect(), bullet.GetRect())) {
+                if(CheckCollisionRecs(it->GetRect(), bullet.GetRect())) {
                     it = enemies.erase(it);
+                    std::cout << "Collision detected: Bullet at (" << bullet.GetRect().x << ", " << bullet.GetRect().y << ") and Enemy at (" << it->GetRect().x << ", " << it->GetRect().y << ")\n";
                     bullet.active = false;
+                    break;
                 } else {
                     ++it;
                 }
