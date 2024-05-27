@@ -6,6 +6,7 @@
 #include "hpp/Player.h"
 #include "raylib.h"
 #include "hpp/Game.h"
+#include "hpp/Obstacle.h"
 
 
 int main() {

@@ -8,16 +8,17 @@
 #include "Bullet.h"
 #include <vector>
 #include "Enemy.h"
+#include "Obstacle.h"
 
 
 class Game {
 private:
     Player player;
-    // Obstacle obstacle;
-    // std::vector<Obstacle> obstacles;
+    std::vector<Obstacle> obstacles;
     std::vector<Bullet> bullets;
     std::vector<Enemy> enemies;
     std::vector<Enemy> CreateEnemies();
+    std::vector<Obstacle> CreateObstacles();
     int playerLives = 3;
     int playerScore = 0;
     float shotInterval = 0.25f;

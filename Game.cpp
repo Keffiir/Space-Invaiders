@@ -9,6 +9,7 @@
 
 Game::Game() {
     enemies = CreateEnemies();
+    obstacles = CreateObstacles();
     enemiesDirection = 1;
 }
 
@@ -24,6 +25,10 @@ void Game::Draw() {
 
     for(Enemy enemy: enemies) {
         enemy.Draw();
+    }
+
+    for(auto& obstacle : obstacles) {
+        obstacle.Draw();
     }
 }
 
@@ -62,6 +67,7 @@ void Game::Update() {
     }
 
     CheckForCollisions();
+
     for(int i = 0; i < bullets.size(); i++) {
         bullets[i].Update();
         if(!bullets[i].IsActive()) {
@@ -87,6 +93,15 @@ std::vector<Enemy> Game::CreateEnemies() {
     }
     return enemies;
 }
+
+std::vector<Obstacle> Game::CreateObstacles() {
+    std::vector<Obstacle> obstacles;
+    obstacles.push_back(Obstacle({100,600}));
+    obstacles.push_back(Obstacle({350,600}));
+    obstacles.push_back(Obstacle({600,600}));
+    return obstacles;
+}
+
 
 void Game::CheckForCollisions() {
     for(auto& bullet: bullets) {
@@ -128,6 +143,13 @@ void Game::CheckForCollisions() {
                 playerLives--;
                 bullet.active = false;
                 std::cout << "Player lives: " << playerLives << " ";
+            }
+        }
+
+        for(auto& obstacle : obstacles) {
+            if(CheckCollisionRecs(bullet.GetRect(), obstacle.GetRect())) {
+                bullet.active = false;
+                std::cout << "Obstacle collision";
             }
         }
     }

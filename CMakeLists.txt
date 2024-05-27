@@ -38,6 +38,10 @@ add_executable(${PROJECT_NAME}
         Bullet.cpp
         Enemy.cpp
         hpp/Enemy.h
+        hpp/Obstacle.cpp
+        hpp/Obstacle.h
+        hpp/Bonus.cpp
+        hpp/Bonus.h
 )
 #set(raylib_VERBOSE 1)
 target_link_libraries(${PROJECT_NAME} raylib)

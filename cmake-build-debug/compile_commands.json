@@ -31,6 +31,18 @@
 },
 {
   "directory": "/Users/nikiforovivan/CLionProjects/space-invaiders/cmake-build-debug",
+  "command": "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ -DGRAPHICS_API_OPENGL_33 -DPLATFORM_DESKTOP -I/Users/nikiforovivan/CLionProjects/space-invaiders/cmake-build-debug/_deps/raylib-src/src -I/Users/nikiforovivan/CLionProjects/space-invaiders/cmake-build-debug/_deps/raylib-src/src/external/glfw/include -g -std=gnu++11 -arch arm64 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.3.sdk -mmacosx-version-min=13.0 -fcolor-diagnostics -o CMakeFiles/example.dir/hpp/Obstacle.cpp.o -c /Users/nikiforovivan/CLionProjects/space-invaiders/hpp/Obstacle.cpp",
+  "file": "/Users/nikiforovivan/CLionProjects/space-invaiders/hpp/Obstacle.cpp",
+  "output": "CMakeFiles/example.dir/hpp/Obstacle.cpp.o"
+},
+{
+  "directory": "/Users/nikiforovivan/CLionProjects/space-invaiders/cmake-build-debug",
+  "command": "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ -DGRAPHICS_API_OPENGL_33 -DPLATFORM_DESKTOP -I/Users/nikiforovivan/CLionProjects/space-invaiders/cmake-build-debug/_deps/raylib-src/src -I/Users/nikiforovivan/CLionProjects/space-invaiders/cmake-build-debug/_deps/raylib-src/src/external/glfw/include -g -std=gnu++11 -arch arm64 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.3.sdk -mmacosx-version-min=13.0 -fcolor-diagnostics -o CMakeFiles/example.dir/hpp/Bonus.cpp.o -c /Users/nikiforovivan/CLionProjects/space-invaiders/hpp/Bonus.cpp",
+  "file": "/Users/nikiforovivan/CLionProjects/space-invaiders/hpp/Bonus.cpp",
+  "output": "CMakeFiles/example.dir/hpp/Bonus.cpp.o"
+},
+{
+  "directory": "/Users/nikiforovivan/CLionProjects/space-invaiders/cmake-build-debug",
   "command": "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc -DGL_SILENCE_DEPRECATION -DGRAPHICS_API_OPENGL_33 -DPLATFORM_DESKTOP -I/Users/nikiforovivan/CLionProjects/space-invaiders/cmake-build-debug/_deps/raylib-src/src -F/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.3.sdk/System/Library/Frameworks -isystem /Users/nikiforovivan/CLionProjects/space-invaiders/cmake-build-debug/_deps/raylib-src/src/external/glfw/include -fno-strict-aliasing -Werror=implicit-function-declaration -Werror=pointer-arith  -g -std=gnu99 -arch arm64 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.3.sdk -mmacosx-version-min=13.0 -fcolor-diagnostics -o _deps/raylib-build/raylib/CMakeFiles/raylib.dir/rcore.c.o -c /Users/nikiforovivan/CLionProjects/space-invaiders/cmake-build-debug/_deps/raylib-src/src/rcore.c",
   "file": "/Users/nikiforovivan/CLionProjects/space-invaiders/cmake-build-debug/_deps/raylib-src/src/rcore.c",
   "output": "_deps/raylib-build/raylib/CMakeFiles/raylib.dir/rcore.c.o"
