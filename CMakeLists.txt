@@ -36,10 +36,6 @@ add_executable(${PROJECT_NAME}
         hpp/Game.h
         hpp/Bullet.h
         Bullet.cpp
-        Obstacle.cpp
-        hpp/Obstacle.h
-        Block.cpp
-        hpp/Block.h
         Enemy.cpp
         hpp/Enemy.h
 )

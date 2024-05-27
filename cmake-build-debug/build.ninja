@@ -81,22 +81,6 @@ build CMakeFiles/example.dir/Bullet.cpp.o: CXX_COMPILER__example_unscanned_Debug
   OBJECT_DIR = CMakeFiles/example.dir
   OBJECT_FILE_DIR = CMakeFiles/example.dir
 
-build CMakeFiles/example.dir/Obstacle.cpp.o: CXX_COMPILER__example_unscanned_Debug /Users/nikiforovivan/CLionProjects/space-invaiders/Obstacle.cpp || cmake_object_order_depends_target_example
-  DEFINES = -DGRAPHICS_API_OPENGL_33 -DPLATFORM_DESKTOP
-  DEP_FILE = CMakeFiles/example.dir/Obstacle.cpp.o.d
-  FLAGS = -g -std=gnu++11 -arch arm64 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.3.sdk -mmacosx-version-min=13.0 -fcolor-diagnostics
-  INCLUDES = -I/Users/nikiforovivan/CLionProjects/space-invaiders/cmake-build-debug/_deps/raylib-src/src -I/Users/nikiforovivan/CLionProjects/space-invaiders/cmake-build-debug/_deps/raylib-src/src/external/glfw/include
-  OBJECT_DIR = CMakeFiles/example.dir
-  OBJECT_FILE_DIR = CMakeFiles/example.dir
-
-build CMakeFiles/example.dir/Block.cpp.o: CXX_COMPILER__example_unscanned_Debug /Users/nikiforovivan/CLionProjects/space-invaiders/Block.cpp || cmake_object_order_depends_target_example
-  DEFINES = -DGRAPHICS_API_OPENGL_33 -DPLATFORM_DESKTOP
-  DEP_FILE = CMakeFiles/example.dir/Block.cpp.o.d
-  FLAGS = -g -std=gnu++11 -arch arm64 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.3.sdk -mmacosx-version-min=13.0 -fcolor-diagnostics
-  INCLUDES = -I/Users/nikiforovivan/CLionProjects/space-invaiders/cmake-build-debug/_deps/raylib-src/src -I/Users/nikiforovivan/CLionProjects/space-invaiders/cmake-build-debug/_deps/raylib-src/src/external/glfw/include
-  OBJECT_DIR = CMakeFiles/example.dir
-  OBJECT_FILE_DIR = CMakeFiles/example.dir
-
 build CMakeFiles/example.dir/Enemy.cpp.o: CXX_COMPILER__example_unscanned_Debug /Users/nikiforovivan/CLionProjects/space-invaiders/Enemy.cpp || cmake_object_order_depends_target_example
   DEFINES = -DGRAPHICS_API_OPENGL_33 -DPLATFORM_DESKTOP
   DEP_FILE = CMakeFiles/example.dir/Enemy.cpp.o.d
@@ -113,7 +97,7 @@ build CMakeFiles/example.dir/Enemy.cpp.o: CXX_COMPILER__example_unscanned_Debug 
 #############################################
 # Link the executable example
 
-build example: CXX_EXECUTABLE_LINKER__example_Debug CMakeFiles/example.dir/main.cpp.o CMakeFiles/example.dir/Player.cpp.o CMakeFiles/example.dir/Game.cpp.o CMakeFiles/example.dir/Bullet.cpp.o CMakeFiles/example.dir/Obstacle.cpp.o CMakeFiles/example.dir/Block.cpp.o CMakeFiles/example.dir/Enemy.cpp.o | _deps/raylib-build/raylib/libraylib.a _deps/raylib-build/raylib/external/glfw/src/libglfw3.a || _deps/raylib-build/raylib/external/glfw/src/libglfw3.a _deps/raylib-build/raylib/libraylib.a
+build example: CXX_EXECUTABLE_LINKER__example_Debug CMakeFiles/example.dir/main.cpp.o CMakeFiles/example.dir/Player.cpp.o CMakeFiles/example.dir/Game.cpp.o CMakeFiles/example.dir/Bullet.cpp.o CMakeFiles/example.dir/Enemy.cpp.o | _deps/raylib-build/raylib/libraylib.a _deps/raylib-build/raylib/external/glfw/src/libglfw3.a || _deps/raylib-build/raylib/external/glfw/src/libglfw3.a _deps/raylib-build/raylib/libraylib.a
   FLAGS = -g -arch arm64 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.3.sdk -mmacosx-version-min=13.0
   LINK_LIBRARIES = _deps/raylib-build/raylib/libraylib.a  -framework IOKit  -framework Cocoa  -framework OpenGL  -framework OpenGL  _deps/raylib-build/raylib/external/glfw/src/libglfw3.a  -framework IOKit  -framework Cocoa  -framework CoreFoundation
   OBJECT_DIR = CMakeFiles/example.dir

@@ -6,14 +6,15 @@
 #include "hpp/Bullet.h"
 #include "iostream"
 
-Bullet::Bullet(Vector2 pos, int speed) {
+Bullet::Bullet(Vector2 pos, int speed, Color color) {
     this->pos = pos;
     this->speed = speed;
+    this->color = color;
     active = true;
 }
 
 void Bullet::Draw() {
-    DrawRectangle(pos.x, pos.y, 3, 12, RED);
+    DrawRectangle(pos.x, pos.y, 3, 12, color);
 }
 
 void Bullet::Update() {

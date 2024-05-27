@@ -3,10 +3,11 @@
 //
 
 #include "hpp/Enemy.h"
+#include "random"
 
 Texture2D Enemy::enemyTypesImg[3] = {};
 
-Enemy::Enemy(int type, Vector2 position) {
+Enemy::Enemy(int type, Vector2 position) : bullet({0, 0}, 0, WHITE), type(type), position(position) {
 
     this->type = type;
     this->position = position;
@@ -38,6 +39,10 @@ int Enemy::GetType() {
     return type;
 }
 
+void Enemy::Fire() {
+    bullets.push_back(Bullet({position.x, position.y}, 6, BLUE));
+}
+
 void Enemy::UnloadImages() {
     for(int i = 0; i < 3; i++) {
         UnloadTexture(enemyTypesImg[i]);
@@ -52,5 +57,13 @@ Rectangle Enemy::GetRect() {
 }
 
 void Enemy::Update(int direction) {
+
     position.x += direction;
+
+    // Удаление неактивных пуль
+    // bullets.erase(
+    //     std::remove_if(bullets.begin(), bullets.end(), [](const Bullet& b) { return !b.IsActive(); }),
+    //     bullets.end()
+    // );
 }
+

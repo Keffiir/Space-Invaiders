@@ -25,18 +25,6 @@
 },
 {
   "directory": "/Users/nikiforovivan/CLionProjects/space-invaiders/cmake-build-debug",
-  "command": "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ -DGRAPHICS_API_OPENGL_33 -DPLATFORM_DESKTOP -I/Users/nikiforovivan/CLionProjects/space-invaiders/cmake-build-debug/_deps/raylib-src/src -I/Users/nikiforovivan/CLionProjects/space-invaiders/cmake-build-debug/_deps/raylib-src/src/external/glfw/include -g -std=gnu++11 -arch arm64 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.3.sdk -mmacosx-version-min=13.0 -fcolor-diagnostics -o CMakeFiles/example.dir/Obstacle.cpp.o -c /Users/nikiforovivan/CLionProjects/space-invaiders/Obstacle.cpp",
-  "file": "/Users/nikiforovivan/CLionProjects/space-invaiders/Obstacle.cpp",
-  "output": "CMakeFiles/example.dir/Obstacle.cpp.o"
-},
-{
-  "directory": "/Users/nikiforovivan/CLionProjects/space-invaiders/cmake-build-debug",
-  "command": "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ -DGRAPHICS_API_OPENGL_33 -DPLATFORM_DESKTOP -I/Users/nikiforovivan/CLionProjects/space-invaiders/cmake-build-debug/_deps/raylib-src/src -I/Users/nikiforovivan/CLionProjects/space-invaiders/cmake-build-debug/_deps/raylib-src/src/external/glfw/include -g -std=gnu++11 -arch arm64 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.3.sdk -mmacosx-version-min=13.0 -fcolor-diagnostics -o CMakeFiles/example.dir/Block.cpp.o -c /Users/nikiforovivan/CLionProjects/space-invaiders/Block.cpp",
-  "file": "/Users/nikiforovivan/CLionProjects/space-invaiders/Block.cpp",
-  "output": "CMakeFiles/example.dir/Block.cpp.o"
-},
-{
-  "directory": "/Users/nikiforovivan/CLionProjects/space-invaiders/cmake-build-debug",
   "command": "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ -DGRAPHICS_API_OPENGL_33 -DPLATFORM_DESKTOP -I/Users/nikiforovivan/CLionProjects/space-invaiders/cmake-build-debug/_deps/raylib-src/src -I/Users/nikiforovivan/CLionProjects/space-invaiders/cmake-build-debug/_deps/raylib-src/src/external/glfw/include -g -std=gnu++11 -arch arm64 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.3.sdk -mmacosx-version-min=13.0 -fcolor-diagnostics -o CMakeFiles/example.dir/Enemy.cpp.o -c /Users/nikiforovivan/CLionProjects/space-invaiders/Enemy.cpp",
   "file": "/Users/nikiforovivan/CLionProjects/space-invaiders/Enemy.cpp",
   "output": "CMakeFiles/example.dir/Enemy.cpp.o"

@@ -5,13 +5,19 @@
 #ifndef ENEMY_H
 #define ENEMY_H
 
+#include <vector>
+
 #include "raylib.h"
+#include "Bullet.h"
 
 class Enemy {
 public:
+    Bullet bullet;
+    std::vector<Bullet> bullets;
     Enemy(int type, Vector2 position);
     void Update(int direction);
     void Draw();
+    void Fire();
     int GetType();
     static void UnloadImages();
     Rectangle GetRect();

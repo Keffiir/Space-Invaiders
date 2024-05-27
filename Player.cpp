@@ -22,7 +22,6 @@ void Player::Draw() {
 }
 
 void Player::Update() {
-    position.x += speed;
     if(position.x < 0) {
         position.x = 0;
     } else if(position.x > GetScreenWidth() - image.width) {
@@ -31,11 +30,11 @@ void Player::Update() {
 }
 
 void Player::MoveLeft() {
-    if(speed > 0) speed = -speed;
+    position.x -= speed;
 }
 
 void Player::MoveRight() {
-    if(speed < 0) speed = -speed;
+    position.x += speed;
 }
 
 Vector2 Player::GetCurrentPosition() {
