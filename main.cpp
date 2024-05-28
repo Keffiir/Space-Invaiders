@@ -22,7 +22,7 @@ int main() {
     InitWindow(screenWidth, screenHeight, "C++ Space Invaiders");
     SetTargetFPS(60);
 
-    Texture2D playerTexture = LoadTexture("images/ship.png");
+    Texture2D playerTexture = LoadTexture("/Users/nikiforovivan/CLionProjects/space-invaiders/images/ship.png");
 
     Player player;
 
@@ -39,17 +39,18 @@ int main() {
 
         BeginDrawing();
 
-        bonus.Draw();
         DrawRectangleRoundedLines({10,10,780,780}, 0.18f, 20, 2, WHITE);
-        DrawLineEx({25, 730}, {775, 730}, 3, WHITE);
+        DrawLineEx({25, 710}, {775, 710}, 3, WHITE);
         if(game.run) {
             DrawTextEx(GetFontDefault(), "LEVEL 01", {570, 740}, 34, 2, WHITE);
         } else {
-            DrawTextEx(GetFontDefault(), "GAME OVER", {570, 740}, 34, 2, WHITE);
+            DrawTextEx(GetFontDefault(), "GAME OVER", {300, 740}, 34, 2, WHITE);
         }
 
-        for(float x = 100; x < game.playerLives; x += 50) {
-            DrawTextureV(playerTexture, {x, 500}, WHITE);
+        float x = 50.0;
+        for(float i = 0; i < game.playerLives; i++) {
+            DrawTextureV(playerTexture, {x, 720}, WHITE);
+            x += 50;
         }
 
         DrawTextEx(GetFontDefault(), "SCORE:", {50, 15}, 34, 2, WHITE);
@@ -57,7 +58,6 @@ int main() {
 
         DrawTextEx(GetFontDefault(), numberText.c_str(), {175, 15}, 34, 2, WHITE);
         DrawTextEx(GetFontDefault(), "LEVEL 01", {570, 740}, 34, 2, WHITE);
-
 
 
         game.Draw();
