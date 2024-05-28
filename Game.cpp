@@ -11,6 +11,8 @@ Game::Game() {
     enemies = CreateEnemies();
     obstacles = CreateObstacles();
     enemiesDirection = 1;
+    run = true;
+    timeLastEnemyShoot = 0.0f;
 }
 
 Game::~Game() {
@@ -33,78 +35,110 @@ void Game::Draw() {
 }
 
 void Game::Event() {
-    if(IsKeyDown(KEY_LEFT)) {
-        player.MoveLeft();
-    } else if(IsKeyDown(KEY_RIGHT)) {
-        player.MoveRight();
-    } else if(IsKeyDown(KEY_SPACE)) {
-        if(GetTime() - lastShotTime >= shotInterval) {
-            bullets.push_back(Bullet({player.GetCurrentPosition().x + 25, player.GetCurrentPosition().y}, -5, RED));
-            lastShotTime = GetTime();
+    if(run) {
+        if(IsKeyDown(KEY_LEFT)) {
+            player.MoveLeft();
+        } else if(IsKeyDown(KEY_RIGHT)) {
+            player.MoveRight();
+        } else if(IsKeyDown(KEY_SPACE)) {
+            if(GetTime() - lastShotTime >= shotInterval) {
+                bullets.push_back(Bullet({player.GetCurrentPosition().x + 25, player.GetCurrentPosition().y}, -5, RED));
+                lastShotTime = GetTime();
+            }
+        }
+    } else {
+        if(IsKeyDown(KEY_ENTER)) {
+            ResetGame();
+            InitGame();
         }
     }
 
     if(playerLives == 0) {
-        // Game over
+        GameOver();
     }
 }
 
 void Game::Update() {
-    player.Update();
 
-    MoveEnemies();
 
-    for(Enemy enemy : enemies) {
-        if((rand() % 500) < 1 && bullets.size() < 20) {
-            if(enemy.type == 0) {
-                bullets.push_back(Bullet({enemy.position.x + 25, enemy.position.y}, 6, PURPLE));
-            } else if(enemy.type == 1) {
-                bullets.push_back(Bullet({enemy.position.x + 25, enemy.position.y}, 5, GREEN));
-            } else if(enemy.type == 2) {
-                bullets.push_back(Bullet({enemy.position.x + 25, enemy.position.y}, 4, YELLOW));
-            }
+    if(run) {
+
+        player.Update();
+
+        for(auto& obstacle : obstacles) {
+            obstacle.Update();
         }
-    }
 
-    CheckForCollisions();
+        MoveEnemies();
 
-    for(int i = 0; i < bullets.size(); i++) {
-        bullets[i].Update();
-        if(!bullets[i].IsActive()) {
-            bullets.erase(bullets.begin() + i);
+
+        EnemyFire();
+
+        CheckForCollisions();
+
+        for(int i = 0; i < bullets.size(); i++) {
+            bullets[i].Update();
+            if(!bullets[i].IsActive()) {
+                bullets.erase(bullets.begin() + i);
+            }
         }
     }
 }
 
+// Функция создания врагов
+
 std::vector<Enemy> Game::CreateEnemies() {
     std::vector<Enemy> enemies;
     int enemyType = 0;
-    for(int row = 0; row < 6; row++) {
-        for(int column = 0; column < 11; column++) {
+    for(int row = 0; row < 5; row++) {
+        for(int column = 0; column < 10; column++) {
             if(row == 2 || row == 3) {
                 enemyType = 1;
-            } else if(row == 4 || row == 5) {
+            } else if(row == 4) {
                 enemyType = 2;
             }
             float x = column * 64;
-            float y = row * 64;
+            float y = row * 64 + 50;
             enemies.push_back(Enemy(enemyType, {x, y}));
         }
     }
     return enemies;
 }
 
+// Функция которая создает щиты
+
 std::vector<Obstacle> Game::CreateObstacles() {
     std::vector<Obstacle> obstacles;
-    obstacles.push_back(Obstacle({100,600}));
-    obstacles.push_back(Obstacle({350,600}));
-    obstacles.push_back(Obstacle({600,600}));
+    obstacles.push_back(Obstacle({100,550}, GRAY));
+    obstacles.push_back(Obstacle({350,550}, GRAY));
+    obstacles.push_back(Obstacle({600,550}, GRAY));
     return obstacles;
 }
 
 
+// Функция проверки коллизий
+
 void Game::CheckForCollisions() {
     for(auto& bullet: bullets) {
+
+        // Проверка коллизий с щитами
+        auto it = obstacles.begin();
+        while(it != obstacles.end()){
+            if(CheckCollisionRecs(bullet.GetRect(), it->GetRect())) {
+
+                if(it->lives <= 1) {
+                    obstacles.erase(it);
+                }
+
+                bullet.active = false;
+                // std::cout << "Obstacle collision";
+                it->lives--;
+                break;
+
+            } else {
+                it++;
+            }
+        }
 
         // Пули от игрока
         if(bullet.speed < 0) {
@@ -145,29 +179,23 @@ void Game::CheckForCollisions() {
                 std::cout << "Player lives: " << playerLives << " ";
             }
         }
-
-        for(auto& obstacle : obstacles) {
-            if(CheckCollisionRecs(bullet.GetRect(), obstacle.GetRect())) {
-                bullet.active = false;
-                std::cout << "Obstacle collision";
-            }
-        }
     }
 }
 
 int Game::GameOver() {
+    run = false;
     return playerScore;
 }
 
 
-
+// Функция движения врагов
 
 void Game::MoveEnemies() {
     bool changeDirection = false;
 
     for(auto& enemy : enemies) {
         enemy.Update(enemiesDirection);
-        if (enemy.GetRect().x <= 0 || enemy.GetRect().x + enemy.GetRect().width >= GetScreenWidth()) {
+        if (enemy.GetRect().x <= 0 || enemy.GetRect().x + enemy.GetRect().width >= GetScreenWidth() - 25) {
             changeDirection = true;
 
         }
@@ -182,10 +210,47 @@ void Game::MoveEnemies() {
     }
 }
 
+void Game::EnemyFire() {
+    double currentTime = GetTime();
+
+    if(currentTime - timeLastEnemyShoot >= enemyShootInterval && !enemies.empty()) {
+        int randomIndex = GetRandomValue(0, enemies.size() - 1);
+        Enemy& enemy = enemies[randomIndex];
+        if(enemy.type == 0) {
+            bullets.push_back(Bullet({enemy.position.x + 25, enemy.position.y}, 8, PURPLE));
+            timeLastEnemyShoot = GetTime();
+        } else if(enemy.type == 1) {
+            bullets.push_back(Bullet({enemy.position.x + 25, enemy.position.y}, 6, GREEN));
+            timeLastEnemyShoot = GetTime();
+        } else if(enemy.type == 3) {
+            bullets.push_back(Bullet({enemy.position.x + 25, enemy.position.y}, 4, YELLOW));
+            timeLastEnemyShoot = GetTime();
+        }
+    }
+}
+
+// Функция сдвига врагов вниз
+
 void Game::MoveEnemiesDown() {
     for(auto& enemy : enemies) {
-        enemy.position.y += 5;
+        enemy.position.y += 10;
     }
+}
+
+void Game::ResetGame() {
+    player.ResetPosition();
+    bullets.clear();
+    enemies.clear();
+    obstacles.clear();
+}
+
+void Game::InitGame() {
+    playerLives = 3;
+    playerScore = 0;
+    enemies = CreateEnemies();
+    obstacles = CreateObstacles();
+    enemiesDirection = 1;
+    run = true;
 }
 
 

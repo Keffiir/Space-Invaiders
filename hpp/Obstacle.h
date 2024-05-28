@@ -11,12 +11,13 @@ class Obstacle {
 private:
     Vector2 position;
 public:
-    Obstacle(Vector2 position);
+    Obstacle(Vector2 position, Color color);
     void Update();
     void Draw();
     bool IsActive();
     Rectangle GetRect();
-    int lives = 6;
+    int lives = 8;
+    Color color;
 };
 
 
