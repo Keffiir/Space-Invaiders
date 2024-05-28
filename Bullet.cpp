@@ -20,7 +20,7 @@ void Bullet::Draw() {
 void Bullet::Update() {
     pos.y += speed;
     if(active) {
-        if(pos.y > GetScreenHeight() || pos.y < 0) {
+        if(pos.y > GetScreenHeight() - 100 || pos.y < 0) {
             active = false;
         }
     }

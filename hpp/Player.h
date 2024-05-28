@@ -22,6 +22,7 @@ public:
     void Draw();
     void Fire();
     void Update();
+    void ResetPosition();
     Vector2 GetCurrentPosition();
     Rectangle GetRect();
 };

@@ -9,7 +9,7 @@
 Player::Player() {
     image = LoadTexture("images/ship.png");
     position.x = (GetScreenWidth() - image.width) / 2;
-    position.y = GetScreenHeight() - 50 - image.height;
+    position.y = GetScreenHeight() - 100 - image.height;
     speed = 5;
 }
 
@@ -22,10 +22,10 @@ void Player::Draw() {
 }
 
 void Player::Update() {
-    if(position.x < 0) {
-        position.x = 0;
-    } else if(position.x > GetScreenWidth() - image.width) {
-        position.x = GetScreenWidth() - image.width;
+    if(position.x < 25) {
+        position.x = 25;
+    } else if(position.x > GetScreenWidth() - image.width - 25) {
+        position.x = GetScreenWidth() - image.width - 25;
     }
 }
 
@@ -44,6 +44,11 @@ Vector2 Player::GetCurrentPosition() {
 Rectangle Player::GetRect() {
     return {position.x, position.y, float(image.width), float(image.height)};
 }
+
+void Player::ResetPosition() {
+    position.x = (GetScreenWidth() - image.width) / 2;
+}
+
 
 
 
