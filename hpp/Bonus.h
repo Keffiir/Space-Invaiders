@@ -12,12 +12,15 @@ private:
     int type;
     Texture2D texture;
     Vector2 position;
-    static Texture2D bonusTypesImg[1];
+    int speed;
 public:
-    Bonus(int type, Vector2 position);
+    bool alive;
+    Bonus();
+    ~Bonus();
     void Update();
     void Draw();
     void Event();
+    void Spawn();
     Rectangle GetRect();
 };
 

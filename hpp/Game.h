@@ -9,6 +9,7 @@
 #include "Bullet.h"
 #include "Enemy.h"
 #include "Obstacle.h"
+#include "Bonus.h"
 #include <vector>
 
 /**
@@ -19,6 +20,7 @@
 class Game {
 private:
     Player player;                      // Объект игрока.
+    Bonus bonus;
     std::vector<Obstacle> obstacles;    // Вектор препятствий.
     std::vector<Bullet> bullets;        // Вектор пуль.
     std::vector<Enemy> enemies;         // Вектор врагов.
@@ -27,6 +29,11 @@ private:
     int enemiesDirection;               // Направление движения врагов.
     float enemyShootInterval = 0.2f;    // Интервал стрельбы врагов.
     float timeLastEnemyShoot;           // Время последнего выстрела врага.
+    float bonusSpawnInterval;
+    float timeLastSpawn;
+    float bonusModeStartTime = 0.0f;
+    float bonusModeDuration = 3.0f;
+    bool laserModeEnabled = false;
 
     std::vector<Enemy> CreateEnemies();         // Создает вектор врагов.
     std::vector<Obstacle> CreateObstacles();    // Создает вектор препятствий.
@@ -38,6 +45,8 @@ private:
     void ResetGame();                           // Сбрасывает игру.
     void CheckForCollisions();                  // Проверяет на коллизии.
     void EnemyFire();                           // Стрельба врагов.
+    void EnableLaserMode();
+    void UpdateLaserMode();
 
 public:
     bool run;                                   // Состояние игры: запущена или остановлена.
@@ -46,7 +55,6 @@ public:
     int playerScore;                            // Счет игрока.
 
     Game();                                     // Конструктор.
-    ~Game();                                    // Деструктор.
     void Draw();                                // Отрисовывает элементы игры.
     void Update();                              // Обновляет состояние игры.
     void Event();                               // Обрабатывает ввод пользователя.

@@ -4,37 +4,46 @@
 
 #include "hpp/Bonus.h"
 
-Texture2D Bonus::bonusTypesImg[1] = {};
+Bonus::Bonus() {
+    texture = LoadTexture("images/bonus.png");
+    alive = false;
+}
 
-Bonus::Bonus(int type, Vector2 position) {
+Bonus::~Bonus() {
+    UnloadTexture(texture);
+}
 
-    this->type = type;
-    this->position = position;
+void Bonus::Spawn() {
+    position.y = 90;
+    int side = GetRandomValue(0, 1);
 
-    if(bonusTypesImg[type].id == 0) {
+    if(side == 0) {
+        position.x = 0;
+        speed = 2;
+    } else {
+        position.x = GetScreenWidth() - texture.width;
+        speed = -2;
+    }
+    alive = true;
+}
 
-        switch (type) {
-            case 0:
-                bonusTypesImg[0] = LoadTexture("/Users/nikiforovivan/CLionProjects/space-invaiders/images/bonus.png");
-            break;
-            case 1:
-                bonusTypesImg[1] = LoadTexture("/Users/nikiforovivan/CLionProjects/space-invaiders/images/bonus.png");
-            break;
-            default:
-                bonusTypesImg[0] = LoadTexture("/Users/nikiforovivan/CLionProjects/space-invaiders/images/bonus.png");
-            break;
+void Bonus::Update() {
+    if(alive) {
+        position.x += speed;
+        if(position.x > GetScreenWidth() - texture.width || position.x < 0) {
+            alive = false;
         }
     }
 }
 
-void Bonus::Event() {
-
-}
-
-void Bonus::Update() {
-    position.x += 1;
-}
 
 void Bonus::Draw() {
-    DrawTextureV(texture, position, WHITE);
+    if(alive) {
+        DrawTextureV(texture, position, WHITE);
+    }
 }
+
+Rectangle Bonus::GetRect() {
+    return {position.x, position.y, float(texture.width), float(texture.height)};
+}
+

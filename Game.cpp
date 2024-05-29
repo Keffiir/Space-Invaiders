@@ -11,11 +11,10 @@ Game::Game() {
     obstacles = CreateObstacles();
     enemiesDirection = 1;
     timeLastEnemyShoot = 0.0f;
+    shotInterval = 0.3f;
     run = true;
-}
-
-Game::~Game() {
-
+    timeLastSpawn = 0;
+    bonusSpawnInterval = GetRandomValue(10, 20);
 }
 
 void Game::Draw() {
@@ -31,6 +30,8 @@ void Game::Draw() {
     for(auto& obstacle : obstacles) {
         obstacle.Draw();
     }
+
+    bonus.Draw();
 }
 
 void Game::Event() {
@@ -41,7 +42,7 @@ void Game::Event() {
             player.MoveRight();
         } else if(IsKeyDown(KEY_SPACE)) {
             if(GetTime() - lastShotTime >= shotInterval) {
-                bullets.push_back(Bullet({player.GetCurrentPosition().x + 25, player.GetCurrentPosition().y}, -10, RED));
+                bullets.push_back(Bullet({player.GetCurrentPosition().x + 25, player.GetCurrentPosition().y}, -8, RED));
                 lastShotTime = GetTime();
             }
         }
@@ -61,9 +62,18 @@ void Game::Event() {
 
 void Game::Update() {
 
+    // Спавн бонуса
+    double currentTime = GetTime();
+    if(currentTime - timeLastSpawn > bonusSpawnInterval) {
+        bonus.Spawn();
+        timeLastSpawn = GetTime();
+    }
+
     if(run) {
 
         player.Update();
+
+        bonus.Update();
 
         for(auto& obstacle : obstacles) {
             obstacle.Update();
@@ -74,6 +84,8 @@ void Game::Update() {
         EnemyFire();
 
         CheckForCollisions();
+
+        UpdateLaserMode();
 
         for(int i = 0; i < bullets.size(); i++) {
             bullets[i].Update();
@@ -114,11 +126,32 @@ std::vector<Obstacle> Game::CreateObstacles() {
     return obstacles;
 }
 
+void Game::EnableLaserMode() {
+    bonusModeStartTime = GetTime();
+    laserModeEnabled = true;
+    shotInterval = 0.075f; // уменьшенный интервал стрельбы
+}
+
+void Game::UpdateLaserMode() {
+    if (laserModeEnabled && (GetTime() - bonusModeStartTime >= bonusModeDuration)) {
+        shotInterval = 0.3f; // восстановление стандартного интервала стрельбы
+        laserModeEnabled = false; // выключение режима лазера
+    }
+}
+
 
 // Функция проверки коллизий
 
 void Game::CheckForCollisions() {
     for(auto& bullet: bullets) {
+
+        // Проверка коллизий с бонусом
+
+        if(CheckCollisionRecs(bonus.GetRect(), bullet.GetRect())) {
+            bonus.alive = false;
+            bullet.active = false;
+            EnableLaserMode();
+        }
 
         // Проверка коллизий с щитами
         auto it = obstacles.begin();
@@ -158,7 +191,6 @@ void Game::CheckForCollisions() {
 
                     it = enemies.erase(it);
                     std::cout << "Collision detected: Bullet at (" << bullet.GetRect().x << ", " << bullet.GetRect().y << ") and Enemy at (" << it->GetRect().x << ", " << it->GetRect().y << ")\n";
-                    std::cout << playerScore;
                     bullet.active = false;
                     break;
                 } else {
@@ -174,7 +206,6 @@ void Game::CheckForCollisions() {
             if(CheckCollisionRecs(bullet.GetRect(), player.GetRect())) {
                 playerLives--;
                 bullet.active = false;
-                std::cout << "Player lives: " << playerLives << " ";
             }
         }
     }
@@ -182,6 +213,7 @@ void Game::CheckForCollisions() {
 
 int Game::GameOver() {
     run = false;
+    win = false;
     return playerScore;
 }
 
@@ -235,8 +267,8 @@ void Game::MoveEnemiesDown() {
 }
 
 int Game::GameWin() {
-    win = true;
     run = false;
+    win = true;
 }
 
 
@@ -245,11 +277,14 @@ void Game::ResetGame() {
     bullets.clear();
     enemies.clear();
     obstacles.clear();
+    shotInterval = 0.3f;
+    playerScore = 0;
     win = false;
 }
 
 void Game::InitGame() {
     playerLives = 3;
+    shotInterval = 0.3f;
     playerScore = 0;
     enemies = CreateEnemies();
     obstacles = CreateObstacles();
