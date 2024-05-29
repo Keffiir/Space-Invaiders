@@ -5,14 +5,13 @@
 #include "hpp/Game.h"
 #include "iostream"
 #include "random"
-#include "iostream"
 
 Game::Game() {
     enemies = CreateEnemies();
     obstacles = CreateObstacles();
     enemiesDirection = 1;
-    run = true;
     timeLastEnemyShoot = 0.0f;
+    run = true;
 }
 
 Game::~Game() {
@@ -21,11 +20,11 @@ Game::~Game() {
 
 void Game::Draw() {
     player.Draw();
-    for(Bullet bullet : bullets) {
+    for(auto& bullet : bullets) {
         bullet.Draw();
     }
 
-    for(Enemy enemy: enemies) {
+    for(auto& enemy: enemies) {
         enemy.Draw();
     }
 
@@ -42,7 +41,7 @@ void Game::Event() {
             player.MoveRight();
         } else if(IsKeyDown(KEY_SPACE)) {
             if(GetTime() - lastShotTime >= shotInterval) {
-                bullets.push_back(Bullet({player.GetCurrentPosition().x + 25, player.GetCurrentPosition().y}, -5, RED));
+                bullets.push_back(Bullet({player.GetCurrentPosition().x + 25, player.GetCurrentPosition().y}, -10, RED));
                 lastShotTime = GetTime();
             }
         }
@@ -55,11 +54,12 @@ void Game::Event() {
 
     if(playerLives == 0) {
         GameOver();
+    } else if(playerScore == 11000) {
+        GameWin();
     }
 }
 
 void Game::Update() {
-
 
     if(run) {
 
@@ -70,7 +70,6 @@ void Game::Update() {
         }
 
         MoveEnemies();
-
 
         EnemyFire();
 
@@ -99,7 +98,7 @@ std::vector<Enemy> Game::CreateEnemies() {
             }
             float x = column * 64;
             float y = row * 64 + 50;
-            enemies.push_back(Enemy(enemyType, {x, y}));
+            enemies.push_back(Enemy(enemyType, {x + 50, y}));
         }
     }
     return enemies;
@@ -144,7 +143,6 @@ void Game::CheckForCollisions() {
         if(bullet.speed < 0) {
 
             // Коллизии для пуль игрока и врагов
-
             auto it = enemies.begin();
             while(it != enemies.end()){
                 if(CheckCollisionRecs(it->GetRect(), bullet.GetRect())) {
@@ -187,7 +185,6 @@ int Game::GameOver() {
     return playerScore;
 }
 
-
 // Функция движения врагов
 
 void Game::MoveEnemies() {
@@ -195,7 +192,7 @@ void Game::MoveEnemies() {
 
     for(auto& enemy : enemies) {
         enemy.Update(enemiesDirection);
-        if (enemy.GetRect().x <= 0 || enemy.GetRect().x + enemy.GetRect().width >= GetScreenWidth() - 25) {
+        if (enemy.GetRect().x <= 25 || enemy.GetRect().x + enemy.GetRect().width >= GetScreenWidth() - 25) {
             changeDirection = true;
 
         }
@@ -222,7 +219,7 @@ void Game::EnemyFire() {
         } else if(enemy.type == 1) {
             bullets.push_back(Bullet({enemy.position.x + 25, enemy.position.y}, 6, GREEN));
             timeLastEnemyShoot = GetTime();
-        } else if(enemy.type == 3) {
+        } else if(enemy.type == 2) {
             bullets.push_back(Bullet({enemy.position.x + 25, enemy.position.y}, 4, YELLOW));
             timeLastEnemyShoot = GetTime();
         }
@@ -233,15 +230,22 @@ void Game::EnemyFire() {
 
 void Game::MoveEnemiesDown() {
     for(auto& enemy : enemies) {
-        enemy.position.y += 10;
+        enemy.position.y += 20;
     }
 }
+
+int Game::GameWin() {
+    win = true;
+    run = false;
+}
+
 
 void Game::ResetGame() {
     player.ResetPosition();
     bullets.clear();
     enemies.clear();
     obstacles.clear();
+    win = false;
 }
 
 void Game::InitGame() {

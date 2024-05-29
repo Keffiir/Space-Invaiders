@@ -1,10 +1,4 @@
-//
-// Created by Иван Никифоров on 19.05.2024.
-//
-
 #include "hpp/Player.h"
-
-#include "hpp/Bullet.h"
 
 Player::Player() {
     image = LoadTexture("images/ship.png");
@@ -18,37 +12,35 @@ Player::~Player() {
 }
 
 void Player::Draw() {
-    DrawTextureV(image, position, WHITE);
+    DrawTextureV(image, position, WHITE);  // Отрисовка текстуры с текущими координатами.
 }
 
 void Player::Update() {
-    if(position.x < 25) {
+    // Ограничение перемещения игрока в пределах границ экрана.
+    if (position.x < 25) {
         position.x = 25;
-    } else if(position.x > GetScreenWidth() - image.width - 25) {
+    } else if (position.x > GetScreenWidth() - image.width - 25) {
         position.x = GetScreenWidth() - image.width - 25;
     }
 }
 
 void Player::MoveLeft() {
-    position.x -= speed;
+    position.x -= speed;  // Смещение влево.
 }
 
 void Player::MoveRight() {
-    position.x += speed;
+    position.x += speed;  // Смещение вправо.
 }
 
 Vector2 Player::GetCurrentPosition() {
-    return position;
+    return position;  // Возвращает текущую позицию игрока.
 }
 
 Rectangle Player::GetRect() {
+    // Возвращает прямоугольник, представляющий границы игрока.
     return {position.x, position.y, float(image.width), float(image.height)};
 }
 
 void Player::ResetPosition() {
-    position.x = (GetScreenWidth() - image.width) / 2;
+    position.x = (GetScreenWidth() - image.width) / 2;  // Сброс позиции игрока.
 }
-
-
-
-

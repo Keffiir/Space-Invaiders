@@ -4,28 +4,25 @@
 
 #include "hpp/Obstacle.h"
 
+// Инициализация щита с заданной позицией и цветом.
 Obstacle::Obstacle(Vector2 position, Color color) {
     this->position = position;
     this->color = color;
 }
 
 void Obstacle::Update() {
+    // Обновление прозрачности цвета в зависимости от количества жизней.
     color.a = lives * 20;
 }
 
 void Obstacle::Draw() {
+    // Отрисовка щита
     DrawRectangle(position.x, position.y, 75, 30, color);
 }
 
 Rectangle Obstacle::GetRect() {
-    Rectangle rect;
-
-    rect.x = position.x;
-    rect.y = position.y;
-    rect.width = 75;
-    rect.height = 30;
-
-    return rect;
+    // Возвращение хитбокса.
+    return {position.x, position.y, 75, 30};
 }
 
 

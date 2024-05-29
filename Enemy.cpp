@@ -5,65 +5,47 @@
 #include "hpp/Enemy.h"
 #include "random"
 
+// Инициализация статического массива текстур противников.
 Texture2D Enemy::enemyTypesImg[3] = {};
 
-Enemy::Enemy(int type, Vector2 position) : bullet({0, 0}, 0, WHITE), type(type), position(position) {
-
-    this->type = type;
-    this->position = position;
-
-    if(enemyTypesImg[type].id == 0) {
-
-        switch (type) {
-            case 0:
-                enemyTypesImg[0] = LoadTexture("/Users/nikiforovivan/CLionProjects/space-invaiders/images/alien-1.png");
-            break;
-            case 1:
-                enemyTypesImg[1] = LoadTexture("/Users/nikiforovivan/CLionProjects/space-invaiders/images/alien-2.png");
-            break;
-            case 2:
-                enemyTypesImg[2] = LoadTexture("/Users/nikiforovivan/CLionProjects/space-invaiders/images/alien-3.png");
-            break;
-            default:
-                enemyTypesImg[0] = LoadTexture("/Users/nikiforovivan/CLionProjects/space-invaiders/images/alien-1.png");
-            break;
-        }
+Enemy::Enemy(int type, Vector2 position) : type(type), position(position), bullet({0, 0}, 0, WHITE) {
+    // Загрузка текстуры противника в зависимости от типа, если она еще не загружена.
+    if (enemyTypesImg[type].id == 0) {
+        const char* paths[3] = {
+            "images/alien-1.png",
+            "images/alien-2.png",
+            "images/alien-3.png"
+        };
+        enemyTypesImg[type] = LoadTexture(paths[type]);
     }
 }
 
 void Enemy::Draw() {
+    // Отрисовка текстуры противника на его текущей позиции.
     DrawTextureV(enemyTypesImg[type], position, WHITE);
 }
 
 int Enemy::GetType() {
-    return type;
+    return type;  // Возвращает тип противника.
 }
 
 void Enemy::Fire() {
+    // Создает новую пулю и добавляет ее в список пуль.
     bullets.push_back(Bullet({position.x, position.y}, 6, BLUE));
 }
 
 void Enemy::UnloadImages() {
-    for(int i = 0; i < 3; i++) {
+    // Выгружает все текстуры противников.
+    for (int i = 0; i < 3; i++) {
         UnloadTexture(enemyTypesImg[i]);
     }
 }
 
 Rectangle Enemy::GetRect() {
-    return {position.x, position.y,
-    float(enemyTypesImg[type].width),
-    float(enemyTypesImg[type].height)
-    };
+    // Возвращает прямоугольник, представляющий границы противника.
+    return {position.x, position.y, float(enemyTypesImg[type].width), float(enemyTypesImg[type].height)};
 }
 
 void Enemy::Update(int direction) {
-
-    position.x += direction;
-
-    // Удаление неактивных пуль
-    // bullets.erase(
-    //     std::remove_if(bullets.begin(), bullets.end(), [](const Bullet& b) { return !b.IsActive(); }),
-    //     bullets.end()
-    // );
+    position.x += direction;  // Обновление позиции по горизонтали в зависимости от направления.
 }
-

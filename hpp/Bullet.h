@@ -3,20 +3,25 @@
 
 #include "raylib.h"
 
+/**
+ * Класс Bullet представляет снаряд в игре.
+ * Отвечает за отрисовку, обновление состояния и проверку активности снаряда.
+ */
+
 class Bullet {
 public:
-    Bullet(Vector2 position, int speed, Color color);
-    void Update();
-    void Draw();
-    bool IsActive();
-    Rectangle GetRect();
-    bool active;
-    int speed;
-    Color color;
+    Bullet(Vector2 position, int speed, Color color);  // Конструктор снаряда.
+    void Update();  // Обновление положения снаряда.
+    void Draw();    // Отрисовка снаряда.
+    bool IsActive();  // Проверка, активен ли снаряд.
+    Rectangle GetRect();  // Получение прямоугольника, для обработки коллизий.
+
+    bool active;   // Флаг активности снаряда.
+    int speed;     // Скорость движения снаряда.
+    Color color;   // Цвет снаряда.
+
 private:
-    Vector2 pos;
+    Vector2 pos;   // Текущая позиция снаряда.
 };
 
-
-
-#endif
+#endif // BULLET_H

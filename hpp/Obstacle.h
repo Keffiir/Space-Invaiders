@@ -7,19 +7,24 @@
 
 #include "raylib.h"
 
+/**
+ * @brief Класс Obstacle представляет препятствие в игре.
+ * Отвечает за отображение, обновление и управление жизненным циклом препятствия.
+ */
+
 class Obstacle {
-private:
-    Vector2 position;
 public:
-    Obstacle(Vector2 position, Color color);
-    void Update();
-    void Draw();
-    bool IsActive();
-    Rectangle GetRect();
-    int lives = 8;
-    Color color;
+    Obstacle(Vector2 position, Color color);  // Конструктор препятствия.
+    void Update();  // Обновляет состояние препятствия.
+    void Draw();    // Отрисовывает препятствие.
+    Rectangle GetRect();  // Возвращает прямоугольник, для коллизий.
+    bool IsActive();  // Проверяет, активно ли препятствие.
+    int lives = 8;         // Количество жизней препятствия.
+
+private:
+    Vector2 position;  // Позиция препятствия на экране.
+    Color color;       // Цвет препятствия.
 };
 
+#endif // OBSTACLE_H
 
-
-#endif //OBSTACLE_H

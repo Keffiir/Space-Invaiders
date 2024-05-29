@@ -4,27 +4,34 @@
 
 #ifndef PLAYER_H
 #define PLAYER_H
+
 #include "raylib.h"
 #include "Bullet.h"
 #include <vector>
 
+/**
+ * Класс Player описывает игрока в игре.
+ * Отвечает за управление движением, отрисовку, стрельбу и другие действия игрока.
+ */
+
 class Player {
 private:
-    Texture2D image;
-    Vector2 position;
-    int speed;
+    Texture2D image;       // Текстура изображения игрока.
+    Vector2 position;      // Позиция игрока на экране.
+    int speed;             // Скорость перемещения игрока.
 
 public:
-    Player();
-    ~Player();
-    void MoveLeft();
-    void MoveRight();
-    void Draw();
-    void Fire();
-    void Update();
-    void ResetPosition();
-    Vector2 GetCurrentPosition();
-    Rectangle GetRect();
+    Player();              // Конструктор.
+    ~Player();             // Деструктор.
+
+    void MoveLeft();       // Двигать игрока влево.
+    void MoveRight();      // Двигать игрока вправо.
+    void Draw();           // Отрисовывает игрока на экране.
+    void Update();         // Обновляет состояние игрока.
+    void ResetPosition();  // Сбрасывает позицию игрока на начальное положение.
+
+    Vector2 GetCurrentPosition();  // Получает текущую позицию игрока.
+    Rectangle GetRect();           // Возвращает прямоугольник, для обработки коллизий.
 };
 
 #endif //PLAYER_H

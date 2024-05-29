@@ -4,44 +4,52 @@
 
 #ifndef GAME_H
 #define GAME_H
+
 #include "Player.h"
 #include "Bullet.h"
-#include <vector>
 #include "Enemy.h"
 #include "Obstacle.h"
-#include "Bonus.h"
+#include <vector>
 
+/**
+ * Класс Game управляет основными элементами и логикой игры.
+ * Включает в себя управление игроком, врагами, препятствиями и обработку событий.
+ */
 
 class Game {
 private:
-    Player player;
-    // Bonus bonus;
-    std::vector<Obstacle> obstacles;
-    std::vector<Bullet> bullets;
-    std::vector<Enemy> enemies;
-    std::vector<Enemy> CreateEnemies();
-    std::vector<Obstacle> CreateObstacles();
-    float shotInterval = 0.25f;
-    float lastShotTime = 0.0f;
-    void MoveEnemies();
-    void MoveEnemiesDown();
-    int enemiesDirection;
-    constexpr static float enemyShootInterval = 0.2;
-    float timeLastEnemyShoot;
-    int GameOver();
-    void InitGame();
-    void ResetGame();
-    void CheckForCollisions();
-    void EnemyFire();
+    Player player;                      // Объект игрока.
+    std::vector<Obstacle> obstacles;    // Вектор препятствий.
+    std::vector<Bullet> bullets;        // Вектор пуль.
+    std::vector<Enemy> enemies;         // Вектор врагов.
+    float shotInterval = 0.25f;         // Интервал между выстрелами.
+    float lastShotTime = 0.0f;          // Время последнего выстрела.
+    int enemiesDirection;               // Направление движения врагов.
+    float enemyShootInterval = 0.2f;    // Интервал стрельбы врагов.
+    float timeLastEnemyShoot;           // Время последнего выстрела врага.
+
+    std::vector<Enemy> CreateEnemies();         // Создает вектор врагов.
+    std::vector<Obstacle> CreateObstacles();    // Создает вектор препятствий.
+    void MoveEnemies();                         // Двигает врагов.
+    void MoveEnemiesDown();                     // Двигает врагов вниз.
+    int GameOver();                             // Завершает игру.
+    int GameWin();                              // Победа
+    void InitGame();                            // Инициализирует игру.
+    void ResetGame();                           // Сбрасывает игру.
+    void CheckForCollisions();                  // Проверяет на коллизии.
+    void EnemyFire();                           // Стрельба врагов.
+
 public:
-    int playerLives = 3;
-    bool run;
-    int playerScore;
-    Game();
-    ~Game();
-    void Draw();
-    void Update();
-    void Event();
+    bool run;                                   // Состояние игры: запущена или остановлена.
+    bool win;
+    int playerLives = 3;                        // Жизни игрока.
+    int playerScore;                            // Счет игрока.
+
+    Game();                                     // Конструктор.
+    ~Game();                                    // Деструктор.
+    void Draw();                                // Отрисовывает элементы игры.
+    void Update();                              // Обновляет состояние игры.
+    void Event();                               // Обрабатывает ввод пользователя.
 };
 
 #endif //GAME_H
